@@ -1,7 +1,10 @@
 package sign_up;
 
 public class SignUpMain {
-	SignUp su = new SignUp();
+	public static void main(String[] args) {
+		SignUp su = new SignUp();
+	}
+	
 	
 	
 }
