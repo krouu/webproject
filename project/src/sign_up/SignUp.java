@@ -62,6 +62,7 @@ import login12_1.loginFormMain;
 		        Sign.add(birth);
 		        Sign.add(sign_btn);
 		        
+		        
 		        Sign.setLayout(null);
 		        Sign.setSize(350, 400);
 		        Sign.setVisible(true); //프레임 창 보이게
