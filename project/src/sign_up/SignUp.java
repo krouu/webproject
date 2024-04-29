@@ -64,7 +64,7 @@ import login12_1.loginFormMain;
 		        
 		        Sign.setLayout(null);
 		        Sign.setSize(350, 400);
-		        Sign.setVisible(true);
+		        Sign.setVisible(true); //프레임 창 보이게
 		        Sign.setLocationRelativeTo(null); //프레임 창 윈도우 가운데
 		        
 		        
