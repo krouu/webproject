@@ -6,7 +6,6 @@ import java.awt.event.MouseListener;
 import javax.swing.JTextField;
 
 public class SignAdapter implements MouseListener{
-	
 	JTextField tf;
 	
 	public SignAdapter(JTextField tf) {

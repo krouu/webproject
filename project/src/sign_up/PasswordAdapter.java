@@ -7,7 +7,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class PasswordAdapter implements MouseListener{
-	
 	JTextField tf;
 	
 	public PasswordAdapter(JTextField tf) {

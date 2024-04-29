@@ -18,7 +18,8 @@ import login12_1.loginFormMain;
 		import java.awt.event.ActionListener;
 
 	public class SignUp extends JFrame {
-		  
+
+		
             public SignUp() {
 		
 		        // 회원가입 창

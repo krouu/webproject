@@ -20,7 +20,6 @@ import sign_up.SignAdapter;
 import sign_up.SignUp;
 
 
-
 public class Login extends JFrame implements ActionListener {
 	JTextField usernameField;
     JPasswordField passwordField;
