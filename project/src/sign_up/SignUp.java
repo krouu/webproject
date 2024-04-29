@@ -20,6 +20,7 @@ import login12_1.loginFormMain;
 	public class SignUp extends JFrame {
 
 		
+		
             public SignUp() {
 		
 		        // 회원가입 창
