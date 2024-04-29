@@ -108,6 +108,7 @@ public class Login extends JFrame implements ActionListener {
 	  
 	  Login.setSize(350,400); // 프레임 사이즈
 	  Login.setVisible(true); // 프레임 보이기
+	  Login.setLocationRelativeTo(null); //프레임 창 윈도우 가운데
 	  
 	  usernameField.addMouseListener(new SignAdapter(usernameField));
 	  passwordField.addMouseListener(new SignAdapter(passwordField));

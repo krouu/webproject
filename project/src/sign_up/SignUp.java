@@ -61,6 +61,8 @@ import login12_1.loginFormMain;
 		        Sign.add(name);
 		        Sign.add(birth);
 		        Sign.add(sign_btn);
+		        
+		        Sign.setLocationRelativeTo(null); //프레임 창 윈도우 가운데
 
 		        Sign.setLayout(null);
 		        Sign.setSize(350, 400);
