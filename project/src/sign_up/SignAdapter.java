@@ -21,7 +21,7 @@ public class SignAdapter implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		
+		change();
 	}
 
 	@Override
