@@ -62,7 +62,6 @@ import login12_1.loginFormMain;
 		        Sign.add(birth);
 		        Sign.add(sign_btn);
 		        
-		        
 		        Sign.setLayout(null);
 		        Sign.setSize(350, 400);
 		        Sign.setVisible(true);
