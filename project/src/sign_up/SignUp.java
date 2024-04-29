@@ -68,6 +68,7 @@ import login12_1.loginFormMain;
 		        Sign.setLocationRelativeTo(null); //프레임 창 윈도우 가운데
 		        
 		        
+		        
 		        // 비밀번호 체크
 		        sign_btn.addActionListener(new ActionListener() {
 		            public void actionPerformed(ActionEvent e) {
