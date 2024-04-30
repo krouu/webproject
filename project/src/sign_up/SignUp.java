@@ -13,7 +13,8 @@ import javax.swing.JTextField;
 
 import login12_1.Login;
 
-	public class SignUp extends JFrame {
+	public class SignUp extends JFrame implements ActionListener {
+		JTextField color_box;
 
 		
             public SignUp() {
@@ -49,21 +50,14 @@ import login12_1.Login;
 		        JTextField birth = new JTextField("생년월일");
 		        birth.setBounds(115, 300, 180, 30);
 		        
+		        color_box = new JTextField();
+		        color_box.setBounds(215,340,80,30);
+		        
 		        JButton color = new JButton("색상");
-		        color.setBounds(115,340,180,30);
-//		        color.addActionListener(new ActionListener() {
-//					
-//					@Override
-//					public void actionPerformed(ActionEvent e) {
-//						Color color_bored = JColorChooser.showDialog(this, "색상선택", Color.CYAN);
-//						
-//						Sign.setBackground(color_bored);
-//					}
-//				});
+		        color.setBounds(115,340,80,30);
+		        color.addActionListener(this);
 		        
 		        
-		        
-
 		        JButton sign_btn = new JButton("가입하기");
 		        sign_btn.setFont(new Font("HY견고딕 보통", Font.BOLD, 20));
 		        sign_btn.setBorder(null);
@@ -79,6 +73,7 @@ import login12_1.Login;
 		        Sign.add(name);
 		        Sign.add(birth);
 		        Sign.add(sign_btn);
+		        Sign.add(color_box);
 		        Sign.add(color);
 		        
 		        id.addMouseListener(new SignAdapter(id));
@@ -90,7 +85,7 @@ import login12_1.Login;
 		        
 		        
 		        Sign.setLayout(null);
-		        Sign.setSize(450,550);
+		        Sign.setSize(430,550);
 		        Sign.setVisible(true); //프레임 창 보이게
 		        Sign.setLocationRelativeTo(null); //프레임 창 윈도우 가운데
 		        
@@ -110,6 +105,14 @@ import login12_1.Login;
 		            }
 		        });
 		    }
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Color color_check = JColorChooser.showDialog(this, "색상 선택", Color.CYAN);
+				color_box.setBackground(color_check);
+				System.out.println(color_check);
+			}
+						
 	}
 		
 

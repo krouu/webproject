@@ -104,7 +104,7 @@ public class Login extends JFrame implements ActionListener {
 	  
 	  Login.setLayout(null); // 레이아웃
 	  
-	  Login.setSize(450,550); // 프레임 사이즈
+	  Login.setSize(430,550); // 프레임 사이즈
 	  Login.setVisible(true); // 프레임 보이기
 	  Login.setLocationRelativeTo(null); //프레임 창 윈도우 가운데
 	  
