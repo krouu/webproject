@@ -50,19 +50,19 @@ public class Login extends JFrame implements ActionListener {
 	  
 	  
 	  //아이디 객체
-	  usernameField = new JTextField("아이디 :",20);
+	  usernameField = new JTextField("아이디",20);
 	  usernameField.setBounds(115,180,180,30); // 위치
 	  
 	  
 	  //비밀번호 객체
-	  passwordField = new JPasswordField("비밀번호 : ",20);
+	  passwordField = new JPasswordField("비밀번호",20);
 	  passwordField.setBounds(115,220,180,30);
 	  
 //	      JPasswordField pw2 = new JPasswordField();
 //	      pw2.setBounds(100,50,80,30);  임시
       
 	  //팀코드 객체
-	  teamcode = new JTextField("팀코드 :", 20);
+	  teamcode = new JTextField("팀코드", 20);
 	  teamcode.setBounds(115,260,180,30);
 	  
 	  //로그인 버튼
@@ -125,23 +125,25 @@ public class Login extends JFrame implements ActionListener {
         String code = teamcode.getText();
 
         // 여기에 로그인 처리 로직을 추가하면 됩니다.
+        
+        
 
-        if (user.equals("강순화") && user2.equals("123") && code.equals("NO1")) {
-            JOptionPane.showMessageDialog(this, "로그인 성공!");
-		            
-	    } else if(!user.equals("강순화") && user2.equals("123") && code.equals("NO1")) {
-	        JOptionPane.showMessageDialog(this, "아이디가 틀립니다. 확인해주세요");
-		          
-	    } else if(user.equals("강순화") && !user2.equals("123") && code.equals("NO1")) {
-	        JOptionPane.showMessageDialog(this, "비밀번호가 틀립니다. 확인해주세요");
-		           
-		} else if(user.equals("강순화") && user2.equals("123") && !code.equals("NO1")){
-		    JOptionPane.showMessageDialog(this, "팀코드가 틀립니다. 확인해주세요");
-		} else{JOptionPane.showMessageDialog(this, "팀코드가 틀립니다. 확인해주세요");
-	}
+//        if (user.equals("강순화") && user2.equals("123") && code.equals("NO1")) {
+//            JOptionPane.showMessageDialog(this, "로그인 성공!");
+//		            
+//	    } else if(!user.equals("강순화") && user2.equals("123") && code.equals("NO1")) {
+//	        JOptionPane.showMessageDialog(this, "아이디가 틀립니다. 확인해주세요");
+//		          
+//	    } else if(user.equals("강순화") && !user2.equals("123") && code.equals("NO1")) {
+//	        JOptionPane.showMessageDialog(this, "비밀번호가 틀립니다. 확인해주세요");
+//		           
+//		} else if(user.equals("강순화") && user2.equals("123") && !code.equals("NO1")){
+//		    JOptionPane.showMessageDialog(this, "팀코드가 틀립니다. 확인해주세요");
+//		} else{JOptionPane.showMessageDialog(this, "팀코드가 틀립니다. 확인해주세요");
+//		}
     }
     
   
-    }
+}
 
 	
