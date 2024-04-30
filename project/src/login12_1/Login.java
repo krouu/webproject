@@ -6,6 +6,10 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.Reader;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,17 +27,16 @@ import sign_up.SignUp;
 
 
 public class Login extends JFrame implements ActionListener {
+	
+	JFrame Login;
 	JTextField usernameField;
     JPasswordField passwordField;
     JTextField teamcode;
-    
 	
-    public Login() {
-			
+    public Login() {	
 			
 	  //로그인 창
-	  JFrame Login = new JFrame("넘버원");
-	  
+	  Login = new JFrame("넘버원");
 	  
 	  //프로그램 명 (NO.1) 
 	  JLabel user = new JLabel("NO.1");  //프로그램 객체
@@ -53,13 +56,9 @@ public class Login extends JFrame implements ActionListener {
 	  usernameField = new JTextField("아이디",20);
 	  usernameField.setBounds(115,180,180,30); // 위치
 	  
-	  
 	  //비밀번호 객체
 	  passwordField = new JPasswordField("비밀번호",20);
 	  passwordField.setBounds(115,220,180,30);
-	  
-//	      JPasswordField pw2 = new JPasswordField();
-//	      pw2.setBounds(100,50,80,30);  임시
       
 	  //팀코드 객체
 	  teamcode = new JTextField("팀코드", 20);
@@ -75,23 +74,20 @@ public class Login extends JFrame implements ActionListener {
 	  join.setBounds(115,320,180,40);
 	  
 	  //회원가입 버튼
-	  
 	  JButton jtb = new JButton("회원가입");
 	  jtb.setFont(new Font("HY견고딕 보통",Font.BOLD,20));
 	  jtb.setForeground(new Color(255,155,0));
 	  jtb.setBackground(Color.white);
 	  jtb.setBounds(115,370,180,40);	  
 	  jtb.addActionListener(new ActionListener() {
+		  
 		  @Override
-		public void actionPerformed(ActionEvent e) {
-			 new SignUp();
+		  public void actionPerformed(ActionEvent e) {
+			new SignUp();
 			Login.setVisible(false);
-			
-			
 		}
 	  });
     
-	  
 	     
 	  //디자인 추가
 	  Login.add(user); // 프로젝트팀명 호출
@@ -111,36 +107,52 @@ public class Login extends JFrame implements ActionListener {
 	  usernameField.addMouseListener(new SignAdapter(usernameField));
 	  passwordField.addMouseListener(new SignAdapter(passwordField));
 	  teamcode.addMouseListener(new SignAdapter(teamcode));
-	  
-	  
-	  
 	}
     
-    
-	
 		 
     public void actionPerformed(ActionEvent e) {
-    	String user = usernameField.getText();
-    	String user2 = new String(passwordField.getPassword());
+    	String id = usernameField.getText();
+    	String pw = new String(passwordField.getPassword());
         String code = teamcode.getText();
-
-        // 여기에 로그인 처리 로직을 추가하면 됩니다.
+ 
+        // memeber_list에 정보가 저장되어 있는지 확인
+        try {
+        	
+        	// member_list 파일 읽어오기
+        	BufferedReader br = new BufferedReader(new FileReader("D:\\test\\member_list.txt"));
+			String line = null;
+			boolean success = false;
+			
+			// 한줄씩 확인
+			while((line = br.readLine()) != null) {
+				String[] member_data = line.split("/");
+				String id_chk = member_data[0];
+				String pw_chk = member_data[1];
+				
+				if(id.equals(id_chk) && pw.equals(pw_chk)) {
+					System.out.println("로그인 성공");
+					success = true;				
+					// 메인 페이지로 이동
+					// new 메인페이지();
+					// Login.setVisible(false);
+					break;
+				}
+			}
+			
+			br.close();
+			
+			if(!success) {
+				System.out.println("로그인 실패 ㅜㅜ");
+				// 프레임에 안내사항 출력되도록 추가하기
+			}
+			
+		} catch (FileNotFoundException e2) {
+			System.out.println("파일을 찾지 못했습니다");
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		} 
         
-        
-
-//        if (user.equals("강순화") && user2.equals("123") && code.equals("NO1")) {
-//            JOptionPane.showMessageDialog(this, "로그인 성공!");
-//		            
-//	    } else if(!user.equals("강순화") && user2.equals("123") && code.equals("NO1")) {
-//	        JOptionPane.showMessageDialog(this, "아이디가 틀립니다. 확인해주세요");
-//		          
-//	    } else if(user.equals("강순화") && !user2.equals("123") && code.equals("NO1")) {
-//	        JOptionPane.showMessageDialog(this, "비밀번호가 틀립니다. 확인해주세요");
-//		           
-//		} else if(user.equals("강순화") && user2.equals("123") && !code.equals("NO1")){
-//		    JOptionPane.showMessageDialog(this, "팀코드가 틀립니다. 확인해주세요");
-//		} else{JOptionPane.showMessageDialog(this, "팀코드가 틀립니다. 확인해주세요");
-//		}
+       
     }
     
   
