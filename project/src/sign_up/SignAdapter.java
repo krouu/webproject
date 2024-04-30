@@ -40,6 +40,8 @@ public class SignAdapter implements MouseListener{
 	}
 	
 	public void change() {
-		tf.setText("");
+		if(tf.getText().equals("아이디") || tf.getText().equals("비밀번호") || tf.getText().equals("비밀번호 확인") || tf.getText().equals("이름")) {
+			tf.setText("");
+		}
 	}
 }
