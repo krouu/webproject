@@ -49,19 +49,19 @@ public class SignUp extends JFrame {
 		  	user2.setBounds(130,75,150,60);
 		  	
 		  	// 아이디 입력 객체
-	        id = new JTextField("아이디");
+	        id = new JTextField("아이디",20);
 	        id.setBounds(115, 140, 180, 30); // 위치
 
 	        // 비밀번호 입력 객체
-	        pw1 = new  JTextField("비밀번호");
+	        pw1 = new  JTextField("비밀번호",20);
 	        pw1.setBounds(115, 180, 180, 30);
 
 	        // 비밀번호 확인 객체
-	        pw2 = new JTextField("비밀번호 확인");
+	        pw2 = new JTextField("비밀번호 확인",20);
 	        pw2.setBounds(115, 220, 180, 30);
 
 	        // 이름 입력 객체
-	        name = new JTextField("이름");
+	        name = new JTextField("이름",10);
 	        name.setBounds(115, 260, 180, 30);
 	        		     
 	        // 색상선택 버튼 객체
