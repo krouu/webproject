@@ -1,6 +1,7 @@
 package vote;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,7 +25,9 @@ public class VoteAdd implements ActionListener{
 	JTextField example3;
 	JTextField example4;
 	JTextField example5;
+	JButton save_btn;
 	JButton add_btn;
+	JLabel memo;
 	int count = 3;
 	
 	
@@ -38,14 +41,14 @@ public class VoteAdd implements ActionListener{
 		panel1.setBorder(section1);
 		panel1.setBounds(10,10,390,125);
 		
-		// 투표 제목		
+		// 투표 제목 객체
 		title = new JTextField("투표 제목");
 		title.setBounds(20,30,370,40);
 		title.setBorder(new LineBorder(Color.DARK_GRAY));
 		title.setForeground(Color.LIGHT_GRAY);
 		title.addMouseListener(new SignAdapter(title));
 		
-		// 투표에 관한 설명
+		// 투표에 관한 설명 객체
 		content = new JTextField("투표에 관한 설명 입력");
 		content.setBounds(20,80,370,40);
 		content.setBorder(new LineBorder(Color.DARK_GRAY));
@@ -58,6 +61,12 @@ public class VoteAdd implements ActionListener{
 		add_btn.setForeground(new Color(255,155,0));
 		add_btn.setBackground(Color.WHITE);
 		add_btn.addActionListener(this);
+		
+		// 투표항목 최대 5개까지 안내 객체
+		memo = new JLabel("투표항목은 최대 5개까지 가능합니다");
+		memo.setForeground(new Color(255,155,0)); //폰트 컬러 적용
+		memo.setBounds(180,150,100,40);
+		memo.setVisible(false);
 		
 		// 투표항목1 객체
 		example1 = new JTextField("항목1");
@@ -73,12 +82,21 @@ public class VoteAdd implements ActionListener{
 		example2.setForeground(Color.LIGHT_GRAY);
 		example2.addMouseListener(new SignAdapter(example2));
 		
-		vote_add.add(panel1);
+		// 저장버튼 객체
+		save_btn = new JButton("저장");
+		save_btn.setBounds(130,450,150,40);
+		save_btn.setForeground(Color.WHITE);
+		save_btn.setBackground(new Color(255,155,0));
+		
+		
 		vote_add.add(title);
 		vote_add.add(content);
+		vote_add.add(panel1);
 		vote_add.add(example1);
 		vote_add.add(example2);
 		vote_add.add(add_btn);
+		vote_add.add(memo);
+		vote_add.add(save_btn);
 		
 		vote_add.setLayout(null);
 		vote_add.setSize(430,550); // 프레임 크기
@@ -119,12 +137,10 @@ public class VoteAdd implements ActionListener{
 			example5.addMouseListener(new SignAdapter(example5));
 			
 			vote_add.add(example5);
-			count += 1;
-			
 			add_btn.setEnabled(false);
+			memo.setVisible(true);
+						
 			
-//			JLabel memo = new JLabel("투표항목은 최대 5개까지 가능합니다");
-//			memo.setBounds();
 		}
 	}
 }
