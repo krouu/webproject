@@ -18,9 +18,10 @@ public class CalendarApp extends JFrame {
         setLayout(null);
 //        setLayout(new BorderLayout());
         
-
+        Font font1 = new Font("HY 견고딕",Font.BOLD,20);
         selectday = new JLabel("자   유   로   운  N   O   .   1");
-        selectday.setBounds(250,1,400,30);
+        selectday.setFont(font1);
+        selectday.setBounds(250,10,400,30);
       
       
 
@@ -51,8 +52,9 @@ public class CalendarApp extends JFrame {
         // 캘린더 패널 생성
         calendarPanel = new JPanel();
         calendarPanel.setLayout(new GridLayout(0, 7)); // 7열 그리드
-        calendarPanel.setBounds(40,100,700,450);
+        calendarPanel.setBounds(40,100,700,420);
 
+        
         
         // 현재 날짜 가져오기
         Calendar cal = Calendar.getInstance(); // 오늘 날짜
@@ -69,6 +71,7 @@ public class CalendarApp extends JFrame {
         for (int i = 0; i < dayOfWeekLabels.length; i++) {
             JLabel dayLabel = new JLabel(dayOfWeekLabels[i]);
             dayLabel.setHorizontalAlignment(SwingConstants.CENTER); // 가운데 정렬
+          
             
             dayLabel.setBounds(40 + i * 100, 100, 100, 30); // 위치와 크기 설정
             
@@ -107,9 +110,7 @@ public class CalendarApp extends JFrame {
             calendarPanel.add(dayButton); // 캘린더 패널에 요일 호출
             
             
-            
-            
-      // 휴일 색깔 지정     
+        // 휴일 색깔 지정     
         if((startDayOfWeek + i -1)% 7 ==0) {
            dayButton.setForeground(Color.BLUE);// 토요일일때 파란색으로
         }else if ((startDayOfWeek + i -1) % 7 == 1) {
@@ -119,16 +120,48 @@ public class CalendarApp extends JFrame {
     
         }
         
+     // 31일 이후의 빈 셀 추가
+        int value= 7 - ((numDays+ startDayOfWeek - 1) %7);  // 남은 빈 셀 개수 계산
+        for (int i = 0; i < value; i++) {
+            JLabel space = new JLabel();
+            space.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // 테두리 설정
+            space.setBackground(Color.GRAY);
+            calendarPanel.add(space);
+        }
+
+
+        
+  // 메뉴바 버튼
+        
+        JMenuBar mb = new JMenuBar();// 메뉴바 객체 선언
+        JMenu home = new JMenu("홈");
+        JMenu to = new JMenu("투표");
+        
+        Font font = new Font("HY견고딕",Font.BOLD,20);//폰트 선언, 글꼴,스타일,크기
+        home.setFont(font);
+        to.setFont(font);
+        
+     // 메뉴 항목의 간격 조정
+        Insets margin = new Insets(10, 70, 20, 30); // 위, 왼쪽, 아래, 오른쪽
+//        home.setMargin(margin);
+        to.setMargin(margin);
+     
+        
+        mb.add(home);
+        mb.add(to);
+        
 
 
             
-      
+        
         
         add(calendarPanel);
         add(selectday);
         add(schedule);
         add(addButton);
+        setJMenuBar(mb);
         setVisible(true);
+       
     }
 
     private class DayButtonListener implements ActionListener {
@@ -141,7 +174,7 @@ public class CalendarApp extends JFrame {
         }
     }
        
- 
+    // 년// 월// 일 버튼 메서드
     class JDatePicker extends JPanel {
         private JComboBox<String> dayComboBox;
         private JComboBox<String> monthComboBox;
@@ -168,7 +201,7 @@ public class CalendarApp extends JFrame {
             }
 
             yearComboBox = new JComboBox<>(years);
-            yearComboBox.setBounds(210, 30, 100, 30);
+            yearComboBox.setBounds(210, 30, 120, 30);
             
             add(yearComboBox);
             add(new JLabel("년"));
