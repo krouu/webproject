@@ -187,12 +187,12 @@ public class CalendarApp extends JFrame {
                 
  
             }
-            dayComboBox = new JComboBox<>(days);
-            dayComboBox.setBounds(300, 30, 100, 30);
+  
 
             String[] months = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
             monthComboBox = new JComboBox<>(months);
             monthComboBox.setBounds(350, 30, 100, 30);
+            monthComboBox.addActionListener(new DateChangeListener());
 
             String[] years = new String[10];
             int currentYear = Calendar.getInstance().get(Calendar.YEAR);
@@ -202,23 +202,24 @@ public class CalendarApp extends JFrame {
 
             yearComboBox = new JComboBox<>(years);
             yearComboBox.setBounds(210, 30, 120, 30);
+            yearComboBox.addActionListener(new DateChangeListener());
+            
             
             add(yearComboBox);
             add(new JLabel("년"));
             add(monthComboBox);
             add(new JLabel("월"));
-            add(dayComboBox);
-            add(new JLabel("일"));
+
 
 
         }
 
         public String getSelectedDate() {
-            String day = (String) dayComboBox.getSelectedItem();
+
             String month = (String) monthComboBox.getSelectedItem();
             String year = (String) yearComboBox.getSelectedItem();
-            if (day != null && month != null && year != null) {
-                return year + "-" + month + "-" + day;
+            if (month != null && year != null) {
+                return year + "-" + month + "-" ;
             } else {
                 return null;
             }
