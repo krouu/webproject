@@ -159,7 +159,7 @@ public class VoteAdd extends JFrame implements ActionListener{
 		} else {
 			try {
 				// vote_list 파일에 회원가입 정보 저장
-				String filePath = "D:\\test\\vote_list.txt";
+				String filePath = "D:\\vote_list.txt";
 				
 				// 파일이 없을 경우 파일 생성
 				File file = new File(filePath);
@@ -169,8 +169,18 @@ public class VoteAdd extends JFrame implements ActionListener{
 				
 				// 파일에 투표정보 저장
 				BufferedWriter br = new BufferedWriter(new FileWriter(file,true));
+				String vote_data = null;
 				
-				String vote_data = title.getText()+"/"+content.getText()+"/"+example1.getText()+"/"+example2.getText()+"/"+example3.getText()+"/"+example4.getText()+"/"+example5.getText();
+				if(example3 != null && example4 == null && example5 == null) {
+					vote_data = title.getText()+"/"+content.getText()+"/"+example1.getText()+"/"+example2.getText()+"/"+example3.getText();	
+				} else if(example3 != null && example4 != null && example5 == null) {
+					vote_data = title.getText()+"/"+content.getText()+"/"+example1.getText()+"/"+example2.getText()+"/"+example3.getText()+"/"+example4.getText();	
+				} else if(example3 != null && example4 != null && example5 != null) {
+					vote_data = title.getText()+"/"+content.getText()+"/"+example1.getText()+"/"+example2.getText()+"/"+example3.getText()+"/"+example4.getText()+"/"+example5.getText();			
+				} else if(example3 == null && example4 == null && example5 == null) {
+					vote_data = title.getText()+"/"+content.getText()+"/"+example1.getText()+"/"+example2.getText();
+				}
+				
 				br.write(vote_data);
 				br.newLine();
 				
