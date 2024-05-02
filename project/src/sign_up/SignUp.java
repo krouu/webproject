@@ -138,7 +138,7 @@ public class SignUp extends JFrame implements ActionListener{
 				
 				try {
 					// member_list 파일에 회원가입 정보 저장
-					String filePath = "D:\\test\\member_list.txt";
+					String filePath = "D:\\member_list.txt";
 					
 					// 파일이 없을 경우 파일 생성
 					File file = new File(filePath);
