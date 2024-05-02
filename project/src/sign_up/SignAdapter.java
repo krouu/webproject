@@ -1,5 +1,6 @@
 package sign_up;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -42,6 +43,7 @@ public class SignAdapter implements MouseListener{
 	public void change() {
 		
 		tf.setText("");
+		tf.setForeground(Color.BLACK);
 		
 	}
 }
