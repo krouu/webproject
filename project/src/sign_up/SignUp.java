@@ -91,59 +91,6 @@ public class SignUp extends JFrame implements ActionListener{
 	        sign_btn.setBackground(new Color(255, 155, 0));
 	        sign_btn.setBounds(115, 360, 180, 40);
 	        sign_btn.addActionListener(this);
-				
-//				@Override
-//				public void actionPerformed(ActionEvent e) {
-//					// 각 객체에 공란 및 항목명일 경우 안내문구 띄우기 / 올바른 정보 입력 시 회원가입 성공
-//					if(id.getText().equals("아이디") || id.getText().equals("")) {
-//						id.setText("아이디를 입력해주세요");
-//	                    id.setForeground(new Color(255, 69, 0));
-//					} else if(pw1.getText().equals("비밀번호") || pw1.getText().equals("")) {
-//						pw1.setText("비밀번호를 입력해주세요");
-//	                    pw1.setForeground(new Color(255, 69, 0));
-//					} else if(!pw1.getText().equals(pw2.getText())){
-//						pw2.setText("비밀번호가 일치하지 않습니다");
-//	                    pw2.setForeground(new Color(255, 69, 0));
-//					} else if(name.getText().equals("이름") || name.getText().equals("")) {
-//						name.setText("이름을 입력해주세요");
-//						name.setForeground(new Color(255, 69, 0));
-//					} else if(color_check == null) {
-//						color_box.setText("색상 선택");
-//						color_box.setForeground(new Color(255, 69, 0));
-//					} else {		
-//						
-//						try {
-//							// member_list 파일에 회원가입 정보 저장
-//							String filePath = "D:\\test\\member_list.txt";
-//							
-//							// 파일이 없을 경우 파일 생성
-//							File file = new File(filePath);
-//							if(!file.exists()) {
-//								file.createNewFile();
-//							}
-//							
-//							// 파일에 회원 정보 저장
-//							BufferedWriter br = new BufferedWriter(new FileWriter(file,true));
-//							
-//							String color_data = color_check.toString().substring(15);
-//							color_data = color_data.replace("]", "");
-//														
-//							String memeber_data = id.getText()+"/"+pw1.getText()+"/"+name.getText()+"/"+color_data;
-//							br.write(memeber_data);
-//							br.newLine();
-//							
-//							br.flush(); 
-//							br.close();
-//							
-//						} catch (IOException e1) {
-//							e1.printStackTrace();
-//						}
-//						
-//						new Login(); // 로그인 창으로 이동
-//	                    Sign.setVisible(false); // 현재 회원가입 화면 숨기기
-//					}
-//				}
-//			});
 
 	        Sign.add(user);
 	        Sign.add(user2);
@@ -161,14 +108,11 @@ public class SignUp extends JFrame implements ActionListener{
 	        pw2.addMouseListener(new SignAdapter(pw2));
 	        name.addMouseListener(new SignAdapter(name));		        
 	        
-	        
 	        Sign.setLayout(null);
 	        Sign.setSize(430,550); // 프레임 크기
 	        Sign.setVisible(true); //프레임 창 보이게
 	        Sign.setLocationRelativeTo(null); //프레임 창 윈도우 가운데
-	        
-	        
-	        
+	        	        
 	    }
 
 		@Override

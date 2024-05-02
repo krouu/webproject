@@ -29,8 +29,8 @@ import sign_up.SignUp;
 public class Login extends JFrame implements ActionListener {
 	
 	JFrame Login;
-	JTextField usernameField;
-    JPasswordField passwordField;
+	JTextField id;
+	JTextField pw;
     JTextField teamcode;
 	
     public Login() {	
@@ -53,12 +53,12 @@ public class Login extends JFrame implements ActionListener {
 	  
 	  
 	  //아이디 객체
-	  usernameField = new JTextField("아이디",20);
-	  usernameField.setBounds(115,180,180,30); // 위치
+	  id = new JTextField("아이디",20);
+	  id.setBounds(115,180,180,30); // 위치
 	  
 	  //비밀번호 객체
-	  passwordField = new JPasswordField("비밀번호",20);
-	  passwordField.setBounds(115,220,180,30);
+	  pw = new JTextField("비밀번호",20);
+	  pw.setBounds(115,220,180,30);
       
 	  //팀코드 객체
 	  teamcode = new JTextField("팀코드", 20);
@@ -92,8 +92,8 @@ public class Login extends JFrame implements ActionListener {
 	  //디자인 추가
 	  Login.add(user); // 프로젝트팀명 호출
 	  Login.add(user2);// 프로젝트팀명 호출
-	  Login.add(usernameField); // 아이디 객체 호출
-	  Login.add(passwordField); // 비밀번호 객체 호출
+	  Login.add(id); // 아이디 객체 호출
+	  Login.add(pw); // 비밀번호 객체 호출
 	  Login.add(teamcode); // 팀코드 객체 호출
 	  Login.add(join);
 	  Login.add(jtb);
@@ -104,53 +104,67 @@ public class Login extends JFrame implements ActionListener {
 	  Login.setVisible(true); // 프레임 보이기
 	  Login.setLocationRelativeTo(null); //프레임 창 윈도우 가운데
 	  
-	  usernameField.addMouseListener(new SignAdapter(usernameField));
-	  passwordField.addMouseListener(new SignAdapter(passwordField));
+	  id.addMouseListener(new SignAdapter(id));
+	  pw.addMouseListener(new SignAdapter(pw));
 	  teamcode.addMouseListener(new SignAdapter(teamcode));
 	}
     
 		 
     public void actionPerformed(ActionEvent e) {
-    	String id = usernameField.getText();
-    	String pw = new String(passwordField.getPassword());
-        String code = teamcode.getText();
+    	        
+        // 각 객체에 공란 및 항목명일 경우 안내문구 띄우기
+        if(id.getText().equals("아이디") || id.getText().equals("")) {
+        	id.setText("입력해주세요");
+            id.setForeground(new Color(255, 69, 0));
+        } else if(pw.getText().equals("비밀번호") || pw.getText().equals("")) {
+        	pw.setText("입력해주세요");
+            pw.setForeground(new Color(255, 69, 0));
+        } else if(teamcode.getText().equals("팀코드") || teamcode.getText().equals("")) {
+        	teamcode.setText("입력해주세요");
+        	teamcode.setForeground(new Color(255, 69, 0));
+        } else {
  
-        // memeber_list에 정보가 저장되어 있는지 확인
-        try {
-        	
-        	// member_list 파일 읽어오기
-        	BufferedReader br = new BufferedReader(new FileReader("D:\\test\\member_list.txt"));
-			String line = null;
-			boolean success = false;
-			
-			// 한줄씩 확인
-			while((line = br.readLine()) != null) {
-				String[] member_data = line.split("/");
-				String id_chk = member_data[0];
-				String pw_chk = member_data[1];
+	        // memeber_list에 정보가 저장되어 있는지 확인
+	        try {
+	        	
+	        	// member_list 파일 읽어오기
+	        	BufferedReader br = new BufferedReader(new FileReader("D:\\test\\member_list.txt"));
+				String line = null;
+				boolean success = false;
 				
-				if(id.equals(id_chk) && pw.equals(pw_chk)) {
-					System.out.println("로그인 성공");
-					success = true;				
-					// 메인 페이지로 이동
-					// new 메인페이지();
-					// Login.setVisible(false);
-					break;
+				// 한줄씩 확인
+				while((line = br.readLine()) != null) {
+					String[] member_data = line.split("/");
+					String id_chk = member_data[0];
+					String pw_chk = member_data[1];
+					
+					// 로그인 성공
+					if(id.getText().equals(id_chk) && pw.getText().equals(pw_chk)) {
+						System.out.println("로그인 성공");
+						success = true;				
+						// 메인 페이지로 이동
+						// new 메인페이지();
+						// Login.setVisible(false);
+						break;
+					}
 				}
-			}
-			
-			br.close();
-			
-			if(!success) {
-				System.out.println("로그인 실패 ㅜㅜ");
-				// 프레임에 안내사항 출력되도록 추가하기
-			}
-			
-		} catch (FileNotFoundException e2) {
-			System.out.println("파일을 찾지 못했습니다");
-		} catch (Exception e2) {
-			e2.printStackTrace();
-		} 
+				
+				br.close();
+				
+				// 로그인 실패
+				if(!success) {
+					id.setText("로그인 실패 (계정정보 확인)");
+					id.setForeground(new Color(255, 69, 0));
+					pw.setText("");
+					teamcode.setText("");
+				}
+				
+			} catch (FileNotFoundException e2) {
+				System.out.println("파일을 찾지 못했습니다");
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			} 
+        }
         
        
     }
