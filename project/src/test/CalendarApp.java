@@ -38,7 +38,7 @@ public class CalendarApp extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String selectedDate = schedule.getSelectedDate();
                 if (selectedDate != null) {
-                    String event = JOptionPane.showInputDialog(CalendarApp.this, "일정을 입력하세요.");
+                    String event = JOptionPane.showInputDialog(CalendarApp.this, "메모.");
                     // 여기서는 간단하게 입력된 일정을 콘솔에 출력합니다.
                     System.out.println("날짜: " + selectedDate + ", 일정: " + event);
                 } else {
@@ -51,11 +51,11 @@ public class CalendarApp extends JFrame {
         // 캘린더 패널 생성
         calendarPanel = new JPanel();
         calendarPanel.setLayout(new GridLayout(0, 7)); // 7열 그리드
-        calendarPanel.setBounds(80,100,700,450);
+        calendarPanel.setBounds(40,100,700,450);
 
         
         // 현재 날짜 가져오기
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance(); // 오늘 날짜
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
         
@@ -66,45 +66,63 @@ public class CalendarApp extends JFrame {
      // 요일 배열
         String[] dayOfWeekLabels = {"일", "월", "화", "수", "목", "금", "토"};
         
-     // 요일 표시 추가
-        for (String dayOfWeekLabel : dayOfWeekLabels) {
-            JLabel dayLabel = new JLabel(dayOfWeekLabel);
+        for (int i = 0; i < dayOfWeekLabels.length; i++) {
+            JLabel dayLabel = new JLabel(dayOfWeekLabels[i]);
+            dayLabel.setHorizontalAlignment(SwingConstants.CENTER); // 가운데 정렬
+            
+            dayLabel.setBounds(40 + i * 100, 100, 100, 30); // 위치와 크기 설정
+            
+            if(dayOfWeekLabels[i].equals("토")) {
+                dayLabel.setForeground(Color.BLUE); // 토요일은 파란색
+            } else if(dayOfWeekLabels[i].equals("일")) {
+                dayLabel.setForeground(Color.RED); // 일요일은 빨간색
+            }
+            
             calendarPanel.add(dayLabel);
-            
-            
-            
-        
-
-      
         }
+    
         
         // 해당 월의 마지막 날짜 가져오기
         int numDays = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
         
-        // 빈 셀 추가
+        // 빈 셀 추가 시작 날짜
         for (int i = 1; i < startDayOfWeek; i++) {
-            calendarPanel.add(new JLabel(""));
+           
+           JLabel space = new JLabel();
+           space.setBorder(BorderFactory.createLineBorder(Color.black));
+           space.setBackground(Color.GRAY);
+           
+           
+            calendarPanel.add(space);
+            
         }
         
+
 
         // 해당 월의 날짜 추가
         for (int i = 1; i <= numDays; i++) {
-            JLabel dayLabel = new JLabel(Integer.toString(i));
-            calendarPanel.add(dayLabel);
-        
-    
+            JButton dayButton = new JButton(Integer.toString(i)); // 요일 버튼 지정
+            dayButton.setBorder(BorderFactory.createLineBorder(Color.black)); // 테투리 선
+            dayButton.setBackground(Color.white);
+            calendarPanel.add(dayButton); // 캘린더 패널에 요일 호출
+            
+            
+            
+            
+      // 휴일 색깔 지정     
+        if((startDayOfWeek + i -1)% 7 ==0) {
+           dayButton.setForeground(Color.BLUE);// 토요일일때 파란색으로
+        }else if ((startDayOfWeek + i -1) % 7 == 1) {
+           dayButton.setForeground(Color.red); // 일요일일 때 빨간색으로
+ 
         }
     
-//        if ( dayOfWeek == Calendar.SUNDAY) {
-//            dayLabel.setForeground(Color.RED); // 토요일과 일요일은 빨간색으로 설정  
-//        } else if(dayOfWeek2==Calendar.SATURDAY) {
-//           dayLabel.setForeground(Color.orange);
-//        }
-//        
+        }
+        
 
 
             
-        
+      
         
         add(calendarPanel);
         add(selectday);
@@ -117,9 +135,9 @@ public class CalendarApp extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             JButton button = (JButton) e.getSource();
-            String dayOfWeek = button.getText();
+            String dayButton = button.getText();
             // 요일 버튼 클릭 시 처리할 내용 추가
-            JOptionPane.showMessageDialog(null, "You clicked " + dayOfWeek);
+            JOptionPane.showMessageDialog(null, "You clicked " + dayButton);
         }
     }
        
@@ -151,6 +169,7 @@ public class CalendarApp extends JFrame {
 
             yearComboBox = new JComboBox<>(years);
             yearComboBox.setBounds(210, 30, 100, 30);
+            
             add(yearComboBox);
             add(new JLabel("년"));
             add(monthComboBox);
