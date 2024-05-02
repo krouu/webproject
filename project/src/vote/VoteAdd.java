@@ -1,9 +1,11 @@
 package vote;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,7 +17,7 @@ import javax.swing.border.TitledBorder;
 
 import sign_up.SignAdapter;
 
-public class VoteAdd implements ActionListener{
+public class VoteAdd extends JFrame implements ActionListener{
 	
 	JFrame vote_add;
 	JTextField title;
@@ -49,7 +51,7 @@ public class VoteAdd implements ActionListener{
 		title.addMouseListener(new SignAdapter(title));
 		
 		// 투표에 관한 설명 객체
-		content = new JTextField("투표에 관한 설명 입력");
+		content = new JTextField("투표에 관한 설명 입력(옵션)");
 		content.setBounds(20,80,370,40);
 		content.setBorder(new LineBorder(Color.DARK_GRAY));
 		content.setForeground(Color.LIGHT_GRAY);
@@ -60,12 +62,49 @@ public class VoteAdd implements ActionListener{
 		add_btn.setBounds(20,150,150,40);
 		add_btn.setForeground(new Color(255,155,0));
 		add_btn.setBackground(Color.WHITE);
-		add_btn.addActionListener(this);
+		add_btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				if(count == 3) {
+					example3 = new JTextField("항목3");
+					example3.setBounds(20,300,370,40);
+					example3.setBorder(new LineBorder(Color.DARK_GRAY));
+					example3.setForeground(Color.LIGHT_GRAY);
+					example3.addMouseListener(new SignAdapter(example3));
+					
+					vote_add.add(example3);
+					count += 1;
+				} else if(count == 4) {
+					example4 = new JTextField("항목4");
+					example4.setBounds(20,350,370,40);
+					example4.setBorder(new LineBorder(Color.DARK_GRAY));
+					example4.setForeground(Color.LIGHT_GRAY);
+					example4.addMouseListener(new SignAdapter(example4));
+					
+					vote_add.add(example4);
+					count += 1;
+				} else if(count == 5) {
+					example5 = new JTextField("항목5");
+					example5.setBounds(20,400,370,40);
+					example5.setBorder(new LineBorder(Color.DARK_GRAY));
+					example5.setForeground(Color.LIGHT_GRAY);
+					example5.addMouseListener(new SignAdapter(example5));
+					
+					vote_add.add(example5);
+					add_btn.setEnabled(false);
+					memo.setVisible(true);
+								
+					
+				}
+			}
+		});
 		
 		// 투표항목 최대 5개까지 안내 객체
-		memo = new JLabel("투표항목은 최대 5개까지 가능합니다");
-		memo.setForeground(new Color(255,155,0)); //폰트 컬러 적용
-		memo.setBounds(180,150,100,40);
+		memo = new JLabel("최대 5개까지 가능합니다");
+		memo.setForeground(new Color(255,170,0)); //폰트 컬러 적용
+		memo.setBounds(180,150,200,40);
 		memo.setVisible(false);
 		
 		// 투표항목1 객체
@@ -87,6 +126,7 @@ public class VoteAdd implements ActionListener{
 		save_btn.setBounds(130,450,150,40);
 		save_btn.setForeground(Color.WHITE);
 		save_btn.setBackground(new Color(255,155,0));
+		save_btn.addActionListener(this);
 		
 		
 		vote_add.add(title);
@@ -103,44 +143,45 @@ public class VoteAdd implements ActionListener{
 		vote_add.setVisible(true); //프레임 창 보이게
 		vote_add.setLocationRelativeTo(null); //프레임 창 윈도우 가운데
 	}
-	
-	public static void main(String[] args) {
-		VoteAdd add = new VoteAdd();
-	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		if(count == 3) {
-			example3 = new JTextField("항목3");
-			example3.setBounds(20,300,370,40);
-			example3.setBorder(new LineBorder(Color.DARK_GRAY));
-			example3.setForeground(Color.LIGHT_GRAY);
-			example3.addMouseListener(new SignAdapter(example3));
+		if(title.getText().equals("투표 제목") || title.getText().equals("")) {
+			title.setText("입력해주세요");
+			title.setForeground(new Color(255, 69, 0));
+		} else if(example1.getText().equals("항목1") || example1.getText().equals("")) {
+			example1.setText("입력해주세요");
+			example1.setForeground(new Color(255, 69, 0));
+		} else if(example2.getText().equals("항목2") || example2.getText().equals("")) {
+			example2.setText("입력해주세요");
+			example2.setForeground(new Color(255, 69, 0));
+		} else {
+			try {
+				// vote_list 파일에 회원가입 정보 저장
+				String filePath = "D:\\test\\vote_list.txt";
+				
+				// 파일이 없을 경우 파일 생성
+				File file = new File(filePath);
+				if(!file.exists()) {
+					file.createNewFile();
+				}
+				
+				// 파일에 투표정보 저장
+				BufferedWriter br = new BufferedWriter(new FileWriter(file,true));
+				
+				String vote_data = title.getText()+"/"+content.getText()+"/"+example1.getText()+"/"+example2.getText()+"/"+example3.getText()+"/"+example4.getText()+"/"+example5.getText();
+				br.write(vote_data);
+				br.newLine();
+				
+				br.flush(); 
+				br.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
 			
-			vote_add.add(example3);
-			count += 1;
-		} else if(count == 4) {
-			example4 = new JTextField("항목4");
-			example4.setBounds(20,350,370,40);
-			example4.setBorder(new LineBorder(Color.DARK_GRAY));
-			example4.setForeground(Color.LIGHT_GRAY);
-			example4.addMouseListener(new SignAdapter(example4));
-			
-			vote_add.add(example4);
-			count += 1;
-		} else if(count == 5) {
-			example5 = new JTextField("항목5");
-			example5.setBounds(20,400,370,40);
-			example5.setBorder(new LineBorder(Color.DARK_GRAY));
-			example5.setForeground(Color.LIGHT_GRAY);
-			example5.addMouseListener(new SignAdapter(example5));
-			
-			vote_add.add(example5);
-			add_btn.setEnabled(false);
-			memo.setVisible(true);
-						
-			
+			new Vote(); // 투표 창으로 이동
+			vote_add.setVisible(false); // 현재 회원가입 화면 숨기기
 		}
 	}
 }
