@@ -128,7 +128,7 @@ public class Login extends JFrame implements ActionListener {
 	        try {
 	        	
 	        	// member_list 파일 읽어오기
-	        	BufferedReader br = new BufferedReader(new FileReader("D:\\member_list.txt"));
+	        	BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\admin\\Desktop\\member_list.txt"));
 				String line = null;
 				boolean success = false;
 				
