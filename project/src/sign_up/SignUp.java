@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -117,54 +119,89 @@ public class SignUp extends JFrame implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			boolean overlap = false;
 			
-			// 각 객체에 공란 및 항목명일 경우 안내문구 띄우기 / 올바른 정보 입력 시 회원가입 성공
-			if(id.getText().equals("아이디") || id.getText().equals("")) {
-				id.setText("입력해주세요");
-                id.setForeground(new Color(255, 69, 0));
-			} else if(pw1.getText().equals("비밀번호") || pw1.getText().equals("")) {
-				pw1.setText("입력해주세요");
-                pw1.setForeground(new Color(255, 69, 0));
-			} else if(!pw1.getText().equals(pw2.getText())){
-				pw2.setText("비밀번호가 일치하지 않습니다");
-                pw2.setForeground(new Color(255, 69, 0));
-			} else if(name.getText().equals("이름") || name.getText().equals("")) {
-				name.setText("입력해주세요");
-				name.setForeground(new Color(255, 69, 0));
-			} else if(color_check == null) {
-				color_box.setText("선택해주세요");
-				color_box.setForeground(new Color(255, 69, 0));
-			} else {		
+			// memeber_list에 정보가 저장되어 있는지 확인
+	        try {
+	        	
+	        	// member_list 파일 읽어오기
+	        	BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\admin\\Desktop\\member_list.txt"));
+				String line = null;
 				
-				try {
-					// member_list 파일에 회원가입 정보 저장
-					String filePath = "D:\\member_list.txt";
+				// 한줄씩 확인
+				while((line = br.readLine()) != null) {
+					String[] member_data = line.split("/");
+					String id_chk = member_data[0];
 					
-					// 파일이 없을 경우 파일 생성
-					File file = new File(filePath);
-					if(!file.exists()) {
-						file.createNewFile();
+					// 중복아이디
+					if(id.getText().equals(id_chk)) {
+						System.out.println("중복아이디");
+						overlap = true;
 					}
-					
-					// 파일에 회원 정보 저장
-					BufferedWriter br = new BufferedWriter(new FileWriter(file,true));
-					
-					String color_data = color_check.toString().substring(15);
-					color_data = color_data.replace("]", "");
-												
-					String memeber_data = id.getText()+"/"+pw1.getText()+"/"+name.getText()+"/"+color_data;
-					br.write(memeber_data);
-					br.newLine();
-					
-					br.flush(); 
-					br.close();
-					
-				} catch (IOException e1) {
-					e1.printStackTrace();
 				}
 				
-				new Login(); // 로그인 창으로 이동
-                Sign.setVisible(false); // 현재 회원가입 화면 숨기기
+				br.close();
+				
+			} catch (FileNotFoundException e2) {
+				System.out.println("파일을 찾지 못했습니다");
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			} finally {
+				
+		        if(overlap){
+		        	id.setText("중복아이디 입니다");
+	                id.setForeground(new Color(255, 69, 0));
+		        } else {
+		        	
+					// 각 객체에 공란 및 항목명일 경우 안내문구 띄우기 / 올바른 정보 입력 시 회원가입 성공
+					if(id.getText().equals("아이디") || id.getText().equals("")) {
+						id.setText("입력해주세요");
+		                id.setForeground(new Color(255, 69, 0));
+					} else if(pw1.getText().equals("비밀번호") || pw1.getText().equals("")) {
+						pw1.setText("입력해주세요");
+		                pw1.setForeground(new Color(255, 69, 0));
+					} else if(!pw1.getText().equals(pw2.getText())){
+						pw2.setText("비밀번호가 일치하지 않습니다");
+		                pw2.setForeground(new Color(255, 69, 0));
+					} else if(name.getText().equals("이름") || name.getText().equals("")) {
+						name.setText("입력해주세요");
+						name.setForeground(new Color(255, 69, 0));
+					} else if(color_check == null) {
+						color_box.setText("선택해주세요");
+						color_box.setForeground(new Color(255, 69, 0));
+					} else {		
+						
+						try {
+							// member_list 파일에 회원가입 정보 저장
+							String filePath = "C:\\Users\\admin\\Desktop\\member_list.txt";
+							
+							// 파일이 없을 경우 파일 생성
+							File file = new File(filePath);
+							if(!file.exists()) {
+								file.createNewFile();
+							}
+							
+							// 파일에 회원 정보 저장
+							BufferedWriter br = new BufferedWriter(new FileWriter(file,true));
+							
+							String color_data = color_check.toString().substring(15);
+							color_data = color_data.replace("]", "");
+														
+							String memeber_data = id.getText()+"/"+pw1.getText()+"/"+name.getText()+"/"+color_data;
+							br.write(memeber_data);
+							br.newLine();
+							
+							br.flush(); 
+							br.close();
+							
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+						
+						new Login(); // 로그인 창으로 이동
+		                Sign.setVisible(false); // 현재 회원가입 화면 숨기기
+					}
+		        }
 			}
 		}
 	}					
