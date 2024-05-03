@@ -1,27 +1,21 @@
 package login12_1;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.Reader;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.WindowConstants;
 
 import sign_up.SignAdapter;
 import sign_up.SignUp;
+import test.CalendarApp;
 
 
 
@@ -143,8 +137,8 @@ public class Login extends JFrame implements ActionListener {
 						System.out.println("로그인 성공");
 						success = true;				
 						// 메인 페이지로 이동
-						// new 메인페이지();
-						// Login.setVisible(false);
+						 new CalendarApp();
+						 Login.setVisible(false);
 						break;
 					}
 				}
