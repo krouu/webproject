@@ -26,7 +26,9 @@ public class Login extends JFrame implements ActionListener {
 	JTextField id;
 	JTextField pw;
     JTextField teamcode;
-	
+    String id_chk;
+    
+    
     public Login() {	
 			
 	  //로그인 창
@@ -129,7 +131,7 @@ public class Login extends JFrame implements ActionListener {
 				// 한줄씩 확인
 				while((line = br.readLine()) != null) {
 					String[] member_data = line.split("/");
-					String id_chk = member_data[0];
+					id_chk = member_data[0];
 					String pw_chk = member_data[1];
 					
 					// 로그인 성공
@@ -162,6 +164,10 @@ public class Login extends JFrame implements ActionListener {
         
        
     }
+    
+    public String getLogin() {
+		return id_chk;
+	}
     
   
 }
