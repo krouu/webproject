@@ -26,7 +26,6 @@ public class VoteAdd extends JFrame implements ActionListener{
 	JTextField example2;
 	JTextField example3;
 	JTextField example4;
-	JTextField example5;
 	JButton save_btn;
 	JButton add_btn;
 	JLabel memo;
@@ -68,7 +67,7 @@ public class VoteAdd extends JFrame implements ActionListener{
 			public void actionPerformed(ActionEvent e) {
 				
 				if(count == 3) {
-					example3 = new JTextField("항목3");
+					example3 = new JTextField("항목3",20);
 					example3.setBounds(20,300,370,40);
 					example3.setBorder(new LineBorder(Color.DARK_GRAY));
 					example3.setForeground(Color.LIGHT_GRAY);
@@ -77,45 +76,35 @@ public class VoteAdd extends JFrame implements ActionListener{
 					vote_add.add(example3);
 					count += 1;
 				} else if(count == 4) {
-					example4 = new JTextField("항목4");
+					example4 = new JTextField("항목4",20);
 					example4.setBounds(20,350,370,40);
 					example4.setBorder(new LineBorder(Color.DARK_GRAY));
 					example4.setForeground(Color.LIGHT_GRAY);
 					example4.addMouseListener(new SignAdapter(example4));
 					
 					vote_add.add(example4);
-					count += 1;
-				} else if(count == 5) {
-					example5 = new JTextField("항목5");
-					example5.setBounds(20,400,370,40);
-					example5.setBorder(new LineBorder(Color.DARK_GRAY));
-					example5.setForeground(Color.LIGHT_GRAY);
-					example5.addMouseListener(new SignAdapter(example5));
-					
-					vote_add.add(example5);
 					add_btn.setEnabled(false);
 					memo.setVisible(true);
-								
 					
-				}
+				} 
 			}
 		});
 		
-		// 투표항목 최대 5개까지 안내 객체
-		memo = new JLabel("최대 5개까지 가능합니다");
+		// 투표항목 최대 4개까지 안내 객체
+		memo = new JLabel("최대 4개까지 가능합니다");
 		memo.setForeground(new Color(255,170,0)); //폰트 컬러 적용
 		memo.setBounds(180,150,200,40);
 		memo.setVisible(false);
 		
 		// 투표항목1 객체
-		example1 = new JTextField("항목1");
+		example1 = new JTextField("항목1",20);
 		example1.setBounds(20,200,370,40);
 		example1.setBorder(new LineBorder(Color.DARK_GRAY));
 		example1.setForeground(Color.LIGHT_GRAY);
 		example1.addMouseListener(new SignAdapter(example1));
 		
 		// 투표항목2 객체
-		example2 = new JTextField("항목2");
+		example2 = new JTextField("항목2",20);
 		example2.setBounds(20,250,370,40);
 		example2.setBorder(new LineBorder(Color.DARK_GRAY));
 		example2.setForeground(Color.LIGHT_GRAY);
@@ -171,13 +160,11 @@ public class VoteAdd extends JFrame implements ActionListener{
 				BufferedWriter br = new BufferedWriter(new FileWriter(file,true));
 				String vote_data = null;
 				
-				if(example3 != null && example4 == null && example5 == null) {
+				if(example3 != null && example4 == null ) {
 					vote_data = title.getText()+"/"+content.getText()+"/"+example1.getText()+"/"+example2.getText()+"/"+example3.getText();	
-				} else if(example3 != null && example4 != null && example5 == null) {
+				} else if(example3 != null && example4 != null) {
 					vote_data = title.getText()+"/"+content.getText()+"/"+example1.getText()+"/"+example2.getText()+"/"+example3.getText()+"/"+example4.getText();	
-				} else if(example3 != null && example4 != null && example5 != null) {
-					vote_data = title.getText()+"/"+content.getText()+"/"+example1.getText()+"/"+example2.getText()+"/"+example3.getText()+"/"+example4.getText()+"/"+example5.getText();			
-				} else if(example3 == null && example4 == null && example5 == null) {
+				} else if(example3 == null && example4 == null) {
 					vote_data = title.getText()+"/"+content.getText()+"/"+example1.getText()+"/"+example2.getText();
 				}
 				
