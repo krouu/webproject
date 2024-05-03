@@ -26,7 +26,7 @@ public class Login extends JFrame implements ActionListener {
 	JTextField id;
 	JTextField pw;
     JTextField teamcode;
-    String id_chk;
+    static String id_chk;
     
     
     public Login() {	
