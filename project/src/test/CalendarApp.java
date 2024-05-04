@@ -38,23 +38,25 @@ public class CalendarApp extends JFrame {
     private static final String SAVE_FOLDER_PATH = "C:/CalendarEvents/";
     private JButton profile;
     private UserProfile userProfile; // 사용자 프로필 객체
+
     
-    
-    
-    Login login_id = new Login();
+//    
+//    Login login_id = new Login();
     
     
    
     public CalendarApp() {
     	
-    	Login login = new Login();
-    	System.out.println(login.getLogin());
+//    	Login login = new Login();
+//    	System.out.println(login.getLogin());
         setTitle("NO1 Team");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         
         
+        
+
         
       //내 프로필 버튼 생성
         profile = new JButton("내 프로필");
@@ -66,10 +68,13 @@ public class CalendarApp extends JFrame {
 //        profile.setBorderPainted();
         profile.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Action to perform when profile button is clicked
-               showProfile(); // 프로필 정보를 표시하는 메서드 호출
+               // showProfile(); // 프로필 정보를 표시하는 메서드 호출
+            	Profile profile = new Profile();
+
             }
         });
+        
+        
         
         
 
@@ -159,6 +164,7 @@ public class CalendarApp extends JFrame {
         add(profile);
         setJMenuBar(mb);
         setVisible(true);
+        setLocationRelativeTo(null);
         schedule.updateCalendar(); // 달력 업데이트
        
     }
@@ -223,67 +229,6 @@ public class CalendarApp extends JFrame {
     }
 
 
-
-    
-    
-    
-    private void showProfile() {
-        String chk_id = login_id.getLogin();
-        System.out.println(chk_id);
-        
-         try {
-             // 회원 정보를 저장한 파일 경로
-             String filePath = "C:\\Users\\admin\\Desktop\\member_list.txt";
-
-             // 파일에서 회원 정보 읽어오기
-             BufferedReader br = new BufferedReader(new FileReader(filePath));
-             String line;
-             StringBuilder profileInfo = new StringBuilder();
-             while ((line = br.readLine()) != null) {
-                 // 각 회원 정보를 파싱하여 프로필 정보에 추가
-                 String[] userInfo = line.split("/");
-                 String id = userInfo[0];
-                 
-                 if(chk_id.equals(id)) {
-                    String name = userInfo[2];
-                    String color = userInfo[3];
-                     
-                     // 프로필 정보에 추가
-                     profileInfo.append("아이디: ").append(id).append("\n\n");
-                     profileInfo.append("이름: ").append(name).append("\n\n");
-                     profileInfo.append("선택된 색상: ").append(color).append("\n\n");
-                     break; // 해당 사용자 정보를 찾았으므로 더 이상 반복할 필요가 없음
-                 }
-                 
-                 
-                 }
-             br.close();
-
-             
-
-             // 새로운 프레임에 프로필 정보를 표시
-             JFrame profileFrame = new JFrame("프로필");
-             JTextArea profileTextArea = new JTextArea(profileInfo.toString());
-             profileTextArea.setEditable(false); // 편집 불가능하도록 설정
-             profileFrame.add(profileTextArea);
-             profileFrame.setSize(300, 200);
-             profileFrame.setLocationRelativeTo(null);
-             profileFrame.setVisible(true);
-         } catch (IOException e) {
-             e.printStackTrace();
-             JOptionPane.showMessageDialog(null, "프로필 정보를 불러오는 데 문제가 발생했습니다.", "오류", JOptionPane.ERROR_MESSAGE);
-         }
-         
-         
-     }
-    
-    
-    
-    
-    
-    
-
-    
  
        
     // 년// 월// 일 버튼 메서드
