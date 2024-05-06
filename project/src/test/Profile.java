@@ -23,24 +23,32 @@ public class Profile extends JFrame{
     private JButton logout;
    
     Login login_id = new Login();
+    @Override
+    public void setVisible(boolean Login) {
+    	
+    	super.setVisible(false);
+    }
 
     public Profile() {
     	// 프레임 설정
         setTitle("프로필");
         setSize(400, 200);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // 프로필 창만 닫게
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(null); // 레이아웃을 null로 설정하여 절대 위치에 컴포넌트를 배치
+        
+        
 
         // 프로필 정보 표시 영역
         JTextArea profileTextArea = new JTextArea();
         profileTextArea.setEditable(false); // 편집 불가능하도록 설정
-//        profileTextArea.setBounds(10, 10, 365, 100); // 위치와 크기 설정
         add(profileTextArea);
 
         // 로그아웃 버튼
         logout = new JButton("로그아웃");
         logout.setBounds(150, 120, 100, 30); // 위치와 크기 설정
         logout.setBackground(new Color(255, 155, 0));
+        logout.setBorderPainted(false);
         logout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -103,10 +111,13 @@ public class Profile extends JFrame{
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "프로필 정보를 불러오는 데 문제가 발생했습니다.", "오류", JOptionPane.ERROR_MESSAGE);
         }
-        
 
-
-        
-        
     }
+    private void profile() {
+		profile.doClick();
+
+	}
+    
+    
+    
 }
