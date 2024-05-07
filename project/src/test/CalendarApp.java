@@ -40,7 +40,10 @@ public class CalendarApp extends JFrame {
 
     
 //    
-    Login login_id = new Login();
+//    Login login = new Login();
+    String id = Login.getId_chk();
+    String pw = Login.getPw_chk();
+    String color = Login.getColor_chk();
     
     
    
@@ -58,17 +61,28 @@ public class CalendarApp extends JFrame {
 
         
       //내 프로필 버튼 생성
+        
+      // color 정보 프로필에 표시
+      String[] color_info = color.split(",");
+      String r = color_info[0];
+      String g = color_info[1];
+      String b = color_info[2];
+      
+      Integer r_value = Integer.valueOf(r.substring(2));
+      Integer g_value = Integer.valueOf(g.substring(2));
+      Integer b_value = Integer.valueOf(b.substring(2));
+        
+        
         profile = new JButton("내 프로필");
         profile.setBounds(700, 10, 80, 30);
         profile.setForeground(Color.white);
-        profile.setBackground(new Color(255,155,0));
+        profile.setBackground(new Color(r_value,g_value,b_value));
         profile.setBorder(new RoundBorder(10));;
         profile.setBorderPainted(false);
 //        profile.setBorderPainted();
         profile.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                // showProfile(); // 프로필 정보를 표시하는 메서드 호출
-            	String id = login_id.getLogin();
             	Profile profile = new Profile(id);
             }
         });
@@ -146,12 +160,6 @@ public class CalendarApp extends JFrame {
 
         mb.add(home);
         mb.add(to);
-        
-
-
-            
-        
-        
         
         add(selectday);
         add(schedule);

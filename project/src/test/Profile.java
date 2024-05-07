@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import login12_1.Login;
 
@@ -46,6 +47,7 @@ public class Profile extends JFrame{
         logout = new JButton("로그아웃");
         logout.setBounds(150, 120, 100, 30); // 위치와 크기 설정
         logout.setBackground(new Color(255, 155, 0));
+        logout.setForeground(Color.white);
         logout.setBorderPainted(false);
         logout.addActionListener(new ActionListener() {
             @Override
@@ -85,7 +87,6 @@ public class Profile extends JFrame{
                    String name = userInfo[2];
                    String color = userInfo[3];
 
-                    
                     // 프로필 정보에 추가
 //                   	profileInfo.append("   ");
                     profileInfo.append("아이디: ").append(id).append("\n\n");
@@ -93,9 +94,12 @@ public class Profile extends JFrame{
                     profileInfo.append("선택된 색상: ").append(color).append("\n\n");
                     break; // 해당 사용자 정보를 찾았으므로 더 이상 반복할 필요가 없음
                     
+                    
+                    
                 }
             }
             br.close();
+  
 
             // 프로필 정보 표시
             JTextArea profileTextArea = new JTextArea(profileInfo.toString());
@@ -126,7 +130,13 @@ public class Profile extends JFrame{
     }
     
 
-    private void profile() {
+    private Color Color(String r_value, String g_value, String b_value) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	private void profile() {
 		profile.doClick();
 
 	}

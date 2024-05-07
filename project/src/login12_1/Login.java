@@ -27,6 +27,8 @@ public class Login extends JFrame implements ActionListener {
 	JTextField pw;
     JTextField teamcode;
     static String id_chk;
+    static String pw_chk;
+    static String color_chk;
     
     
     public Login() {	
@@ -132,11 +134,11 @@ public class Login extends JFrame implements ActionListener {
 				while((line = br.readLine()) != null) {
 					String[] member_data = line.split("/");
 					id_chk = member_data[0];
-					String pw_chk = member_data[1];
-					
+					pw_chk = member_data[1];
+					color_chk = member_data[3];
+										
 					// 로그인 성공
 					if(id.getText().equals(id_chk) && pw.getText().equals(pw_chk)) {
-						System.out.println("로그인 성공");
 						success = true;				
 						// 메인 페이지로 이동
 						 new CalendarApp();
@@ -165,8 +167,18 @@ public class Login extends JFrame implements ActionListener {
        
     }
     
-    public String getLogin() {
+    
+    public static String getId_chk() {
 		return id_chk;
+	}
+    
+    public static String getPw_chk() {
+		return pw_chk;
+	}
+    
+    
+    public static String getColor_chk() {
+		return color_chk;
 	}
     
   
