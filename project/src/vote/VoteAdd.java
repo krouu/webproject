@@ -50,7 +50,7 @@ public class VoteAdd extends JFrame implements ActionListener{
 		title.addMouseListener(new SignAdapter(title));
 		
 		// 투표에 관한 설명 객체
-		content = new JTextField("투표에 관한 설명 입력(옵션)");
+		content = new JTextField("투표에 관한 설명 입력");
 		content.setBounds(20,80,370,40);
 		content.setBorder(new LineBorder(Color.DARK_GRAY));
 		content.setForeground(Color.LIGHT_GRAY);

@@ -39,25 +39,16 @@ public class CalendarApp extends JFrame {
     private UserProfile userProfile; // 사용자 프로필 객체
 
     
-//    
-//    Login login = new Login();
     String id = Login.getId_chk();
     String pw = Login.getPw_chk();
-    String color = Login.getColor_chk();
-    
+    String color = Login.getColor_chk();   
     
    
     public CalendarApp() {
-    	
-//    	Login login = new Login();
-//    	System.out.println(login.getLogin());
         setTitle("NO1 Team");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
-        
-        
-        
 
         
       //내 프로필 버튼 생성
