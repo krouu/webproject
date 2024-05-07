@@ -48,9 +48,6 @@ public class Vote{
         contentPanel.setLayout(null);
         contentPanel.setBackground(Color.WHITE);
 
-       
-		
-		
 		// vote_list 파일에서 투표정보 불러오기
 		try {
             BufferedReader reader = new BufferedReader(new FileReader("D:\\vote_list.txt"));
@@ -70,8 +67,7 @@ public class Vote{
             	
             	JRadioButton example3_btn = null;
                 JRadioButton example4_btn = null;
-                
-            	            	
+            	
             	String[] vote_data = line.split("/");
             	
             	String title = vote_data[0];
@@ -145,9 +141,6 @@ public class Vote{
 					}
 				});
             	
-            	
-            	
-            	            	
             	// 객체 y 증가값
             	btn1_y += 180;
             	btn2_y += 180;
