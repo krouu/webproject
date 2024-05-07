@@ -23,10 +23,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
-
-import login12_1.Login;
 
 public class CalendarApp extends JFrame {
     private JLabel selectday;
@@ -70,15 +67,10 @@ public class CalendarApp extends JFrame {
             public void actionPerformed(ActionEvent e) {
                // showProfile(); // 프로필 정보를 표시하는 메서드 호출
             	Profile profile = new Profile();
-
             }
         });
-        
-        
-        
-        
 
-        
+
         
         Font font1 = new Font("HY 견고딕",Font.BOLD,20);
         selectday = new JLabel("자   유   로   운  N   O   .   1");

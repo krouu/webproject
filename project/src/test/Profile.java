@@ -5,15 +5,14 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import login12_1.Login;
 
@@ -21,13 +20,10 @@ public class Profile extends JFrame{
 	private JButton profile;
     private UserProfile userProfile; // 사용자 프로필 객체
     private JButton logout;
-   
+    // 사용자가 선택한 색상을 저장할 변수 추가
+
     Login login_id = new Login();
-    @Override
-    public void setVisible(boolean Login) {
-    	
-    	super.setVisible(false);
-    }
+    
 
     public Profile() {
     	// 프레임 설정
@@ -65,6 +61,7 @@ public class Profile extends JFrame{
         setVisible(true);
     }
 
+    
     private void loadProfile() {
         String chk_id = login_id.getLogin();
         System.out.println(chk_id);
@@ -85,6 +82,7 @@ public class Profile extends JFrame{
                 if(chk_id.equals(id)) {
                    String name = userInfo[2];
                    String color = userInfo[3];
+
                     
                     // 프로필 정보에 추가
 //                   	profileInfo.append("   ");
@@ -101,6 +99,17 @@ public class Profile extends JFrame{
             JTextArea profileTextArea = new JTextArea(profileInfo.toString());
             profileTextArea.setEditable(false); // 편집 불가능하도록 설정
             profileTextArea.setBounds(10, 10, 365, 100); // 위치와 크기 설정
+            
+            
+            // 글꼴 및 스타일 설정
+            Font font = new Font("SansSerif", Font.BOLD, 14); 
+            profileTextArea.setFont(font); // JTextArea에 글꼴 설정
+
+            // 선택적으로 텍스트 색상과 배경색 설정 가능
+            profileTextArea.setForeground(Color.BLACK); // 텍스트 색상 설정 (예: 검정색)
+            profileTextArea.setBackground(Color.WHITE); // 배경색 설정 (예: 흰색)
+            
+            
 
             
             add(profileTextArea);
@@ -113,10 +122,43 @@ public class Profile extends JFrame{
         }
 
     }
+    
+
     private void profile() {
 		profile.doClick();
 
 	}
+    
+    
+    public class UserProfile {
+        private static final String MEMBER_LIST_PATH = "C:\\Users\\admin\\Desktop\\member_list.txt";
+
+        public Color getSelectedColorFromFile() {
+            // 기본 색상 설정
+            Color defaultColor = new Color(255, 155, 0);
+            
+            try (BufferedReader reader = new BufferedReader(new FileReader(new File(MEMBER_LIST_PATH)))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    // 파일에서 색상 정보를 읽어온다고 가정합니다.
+                    // 여기서는 간단히 빨간색, 초록색, 파란색을 순서대로 읽어오도록 합니다.
+                    if (line.equals("red")) {
+                        return Color.RED;
+                    } else if (line.equals("green")) {
+                        return Color.GREEN;
+                    } else if (line.equals("blue")) {
+                        return Color.BLUE;
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            
+            // 파일에서 색상 정보를 읽어오지 못한 경우 기본 색상을 반환합니다.
+            return defaultColor;
+        }
+    }
+    
     
     
     
