@@ -106,8 +106,8 @@ public class Profile extends JFrame{
             profileTextArea.setFont(font); // JTextArea에 글꼴 설정
 
             // 선택적으로 텍스트 색상과 배경색 설정 가능
-            profileTextArea.setForeground(Color.BLACK); // 텍스트 색상 설정 (예: 검정색)
-            profileTextArea.setBackground(Color.WHITE); // 배경색 설정 (예: 흰색)
+            profileTextArea.setForeground(Color.BLACK);
+            profileTextArea.setBackground(Color.WHITE);
             
             
 
@@ -129,37 +129,6 @@ public class Profile extends JFrame{
 
 	}
     
-    
-    public class UserProfile {
-        private static final String MEMBER_LIST_PATH = "C:\\Users\\admin\\Desktop\\member_list.txt";
-
-        public Color getSelectedColorFromFile() {
-            // 기본 색상 설정
-            Color defaultColor = new Color(255, 155, 0);
-            
-            try (BufferedReader reader = new BufferedReader(new FileReader(new File(MEMBER_LIST_PATH)))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    // 파일에서 색상 정보를 읽어온다고 가정합니다.
-                    // 여기서는 간단히 빨간색, 초록색, 파란색을 순서대로 읽어오도록 합니다.
-                    if (line.equals("red")) {
-                        return Color.RED;
-                    } else if (line.equals("green")) {
-                        return Color.GREEN;
-                    } else if (line.equals("blue")) {
-                        return Color.BLUE;
-                    }
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            
-            // 파일에서 색상 정보를 읽어오지 못한 경우 기본 색상을 반환합니다.
-            return defaultColor;
-        }
-    }
-    
-    
-    
+ 
     
 }
