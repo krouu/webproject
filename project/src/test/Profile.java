@@ -20,13 +20,15 @@ public class Profile extends JFrame{
 	private JButton profile;
     private UserProfile userProfile; // 사용자 프로필 객체
     private JButton logout;
+    static String id;
     // 사용자가 선택한 색상을 저장할 변수 추가
 
-    Login login_id = new Login();
+//    Login login_id = new Login();
     
 
-    public Profile() {
+    public Profile(String id) {
     	// 프레임 설정
+    	this.id = id;
         setTitle("프로필");
         setSize(400, 200);
         // 프로필 창만 닫게
@@ -54,7 +56,7 @@ public class Profile extends JFrame{
         add(logout); // 프레임에 로그아웃 버튼 추가
 
         // 프로필 정보 로드
-        loadProfile();
+        loadProfile(id);
 
         // 화면 표시
         setLocationRelativeTo(null); // 화면 가운데 위치
@@ -62,9 +64,9 @@ public class Profile extends JFrame{
     }
 
     
-    private void loadProfile() {
-        String chk_id = login_id.getLogin();
-        System.out.println(chk_id);
+    private void loadProfile(String chk_id) {
+//        String chk_id = login_id.getLogin();
+        System.out.println(id);
         
         try {
             // 회원 정보를 저장한 파일 경로

@@ -25,6 +25,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import login12_1.Login;
+
 public class CalendarApp extends JFrame {
     private JLabel selectday;
     private JButton addButton;
@@ -38,7 +40,7 @@ public class CalendarApp extends JFrame {
 
     
 //    
-//    Login login_id = new Login();
+    Login login_id = new Login();
     
     
    
@@ -66,7 +68,8 @@ public class CalendarApp extends JFrame {
         profile.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                // showProfile(); // 프로필 정보를 표시하는 메서드 호출
-            	Profile profile = new Profile();
+            	String id = login_id.getLogin();
+            	Profile profile = new Profile(id);
             }
         });
 
