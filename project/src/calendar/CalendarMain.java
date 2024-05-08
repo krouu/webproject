@@ -1,4 +1,4 @@
-package test;
+package calendar;
 
 import javax.swing.SwingUtilities;
 

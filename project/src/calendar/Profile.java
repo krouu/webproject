@@ -1,4 +1,4 @@
-package test;
+package calendar;
 
 import java.awt.Color;
 import java.awt.Font;
