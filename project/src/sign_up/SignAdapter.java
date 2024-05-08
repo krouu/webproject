@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JTextField;
 
+// 항목 클릭 시 공란처리
 public class SignAdapter implements MouseListener{
 	
 	
