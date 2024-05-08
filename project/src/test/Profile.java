@@ -18,24 +18,21 @@ import javax.swing.JTextField;
 import login12_1.Login;
 
 public class Profile extends JFrame{
-	private JButton profile;
+   private JButton profile; //프로필 버튼 객체
     private UserProfile userProfile; // 사용자 프로필 객체
-    private JButton logout;
-    static String id;
-    // 사용자가 선택한 색상을 저장할 변수 추가
-
-//    Login login_id = new Login();
+    private JButton logout; // 로그아웃 버튼 객체
+    static String id; // 아이디 변수
     
 
+    // 프로필 창 내용
     public Profile(String id) {
-    	// 프레임 설정
-    	this.id = id;
-        setTitle("프로필");
-        setSize(400, 200);
-        // 프로필 창만 닫게
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+       
+       // 프레임 설정
+       this.id = id;
+        setTitle("프로필");// 프로필 창의 Titie
+        setSize(400, 200); // 프로필 창 사이즈
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //프로필 창만 닫게
         setLayout(null); // 레이아웃을 null로 설정하여 절대 위치에 컴포넌트를 배치
-        
         
 
         // 프로필 정보 표시 영역
@@ -43,16 +40,17 @@ public class Profile extends JFrame{
         profileTextArea.setEditable(false); // 편집 불가능하도록 설정
         add(profileTextArea);
 
-        // 로그아웃 버튼
+        
+        // 로그아웃 버튼 생성
         logout = new JButton("로그아웃");
         logout.setBounds(150, 120, 100, 30); // 위치와 크기 설정
         logout.setBackground(new Color(255, 155, 0));
         logout.setForeground(Color.white);
-        logout.setBorderPainted(false);
+        logout.setBorderPainted(false); // 버튼상자 선 없애기
         logout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0); // 프로그램 종료
+                System.exit(0); // 로그아웃 버튼 클릭 시 프로그램 종료
             }
         });
         add(logout); // 프레임에 로그아웃 버튼 추가
@@ -60,6 +58,7 @@ public class Profile extends JFrame{
         // 프로필 정보 로드
         loadProfile(id);
 
+        
         // 화면 표시
         setLocationRelativeTo(null); // 화면 가운데 위치
         setVisible(true);
@@ -67,7 +66,6 @@ public class Profile extends JFrame{
 
     
     private void loadProfile(String chk_id) {
-//        String chk_id = login_id.getLogin();
         System.out.println(id);
         
         try {
@@ -83,12 +81,12 @@ public class Profile extends JFrame{
                 String[] userInfo = line.split("/");
                 String id = userInfo[0];
                 
+                // 로그인 정보 확인
                 if(chk_id.equals(id)) {
                    String name = userInfo[2];
                    String color = userInfo[3];
 
                     // 프로필 정보에 추가
-//                   	profileInfo.append("   ");
                     profileInfo.append("아이디: ").append(id).append("\n\n");
                     profileInfo.append("이름: ").append(name).append("\n\n");
                     profileInfo.append("선택된 색상: ").append(color).append("\n\n");
@@ -117,7 +115,6 @@ public class Profile extends JFrame{
             
             
 
-            
             add(profileTextArea);
             
     
@@ -130,16 +127,11 @@ public class Profile extends JFrame{
     }
     
 
-    private Color Color(String r_value, String g_value, String b_value) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    //프로필 버튼 클릭 시 프로필 창 나오게 출력
+   private void profile() {
+      profile.doClick();
 
-
-	private void profile() {
-		profile.doClick();
-
-	}
+   }
     
  
     
