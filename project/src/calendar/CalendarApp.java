@@ -26,7 +26,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import login12_1.Login;
+import login.Login;
 
 
 // 달력 앱을 나타내는 클래스

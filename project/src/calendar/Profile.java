@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import login12_1.Login;
+import login.Login;
 
 public class Profile extends JFrame{
    private JButton profile; //프로필 버튼 객체

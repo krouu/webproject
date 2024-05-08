@@ -19,7 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import login12_1.Login;
+import login.Login;
 
 public class SignUp extends JFrame implements ActionListener{
 		
