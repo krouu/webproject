@@ -174,9 +174,9 @@ public class CalendarApp extends JFrame {
             try (FileWriter writer = new FileWriter(fileName, true)) {
                 writer.write(selectedDate + ": " + event + "\n");
                 writer.write("User ID: " + userId + "\n");
-                writer.write("Color: " + color.getRed() + "," + color.getGreen() + "," + color.getBlue() + "\n");
+                writer.write("Color: " + color.getRed() + "," + color.getGreen() + "," + color.getBlue() + "\n" + "\n");
                 JOptionPane.showMessageDialog(CalendarApp.this, "일정이 저장되었습니다.");
-                System.out.println("일정 파일이 저장된 경로: " + fileName);
+                System.out.println("일정 파일이  저장된 경로: " + fileName);
 
                 // 선택한 날짜에 색상 변경 기능
                 int day = Integer.parseInt(selectedDate.split("-")[2]);
