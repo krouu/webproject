@@ -36,6 +36,7 @@ public class Vote{
 	  	vote_btn.setBackground(new Color(255,155,0));
 	  	vote_btn.addActionListener(new ActionListener() {
 			
+	  		// 투표만들기 클래스로 이동
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new VoteAdd();
@@ -50,7 +51,7 @@ public class Vote{
 
 		// vote_list 파일에서 투표정보 불러오기
 		try {
-            BufferedReader reader = new BufferedReader(new FileReader("D:\\vote_list.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\admin\\Desktop\\vote_list.txt"));
             String line;
             
             // 객체 y 초기값
@@ -108,21 +109,21 @@ public class Vote{
             		example4_btn.setBounds(30,btn4_y,200,28);
             		vote.add(example4_btn);
             	}
-            	            	
+            	
+            	// 라디오객체 그룹화
             	ButtonGroup group = new ButtonGroup();
             	group.add(example1_btn);
             	group.add(example2_btn);
             	group.add(example3_btn);
             	group.add(example4_btn);
             	            	
-            	// 투표정보 패널
+            	// 투표 정보 패널
         		TitledBorder section = new TitledBorder(new LineBorder(Color.LIGHT_GRAY), title);
         		JPanel vote_panel = new JPanel();
         		vote_panel.setLayout(null);
         		vote_panel.setBorder(section);
         		vote_panel.setBounds(20,title_y,380,170);
         		            	
-            	
             	// 투표 제목 객체
             	JLabel content_label = new JLabel(content);
             	content_label.setBounds(30, content_y, 355, 80);
@@ -160,11 +161,10 @@ public class Vote{
             reader.close();
             
         } catch (IOException e) {
-            System.err.println("파일을 읽는 도중 오류가 발생했습니다: " + e.getMessage());
+             e.getMessage();
         }
 
 	  	vote.add(vote_btn);
-	  	
 	  	
 	  	vote.setLayout(null);
 	  	vote.setSize(430,550); // 프레임 크기

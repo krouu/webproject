@@ -83,8 +83,8 @@ public class VoteAdd extends JFrame implements ActionListener{
 					example4.addMouseListener(new SignAdapter(example4));
 					
 					vote_add.add(example4);
-					add_btn.setEnabled(false);
-					memo.setVisible(true);
+					add_btn.setEnabled(false); // 더이상의 항목추가 불가
+					memo.setVisible(true); // 최대 4개까지 안내문구 보여지게
 					
 				} 
 			}
@@ -117,7 +117,6 @@ public class VoteAdd extends JFrame implements ActionListener{
 		save_btn.setBackground(new Color(255,155,0));
 		save_btn.addActionListener(this);
 		
-		
 		vote_add.add(title);
 		vote_add.add(content);
 		vote_add.add(panel1);
@@ -134,6 +133,7 @@ public class VoteAdd extends JFrame implements ActionListener{
 	}
 
 
+	// 항목에 정보가 들어가 있는지 체크
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(title.getText().equals("투표 제목") || title.getText().equals("")) {
@@ -148,7 +148,7 @@ public class VoteAdd extends JFrame implements ActionListener{
 		} else {
 			try {
 				// vote_list 파일에 회원가입 정보 저장
-				String filePath = "D:\\vote_list.txt";
+				String filePath = "C:\\Users\\admin\\Desktop\\vote_list.txt";
 				
 				// 파일이 없을 경우 파일 생성
 				File file = new File(filePath);
@@ -174,7 +174,7 @@ public class VoteAdd extends JFrame implements ActionListener{
 				br.flush(); 
 				br.close();
 			} catch (Exception e2) {
-				// TODO: handle exception
+				
 			}
 			
 			new Vote(); // 투표 창으로 이동
