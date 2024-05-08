@@ -117,6 +117,7 @@ public class SignUp extends JFrame implements ActionListener{
 	        	        
 	    }
 
+        // 회원가입 버튼 클릭 시 이벤트
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			boolean overlap = false;
@@ -133,7 +134,7 @@ public class SignUp extends JFrame implements ActionListener{
 					String[] member_data = line.split("/");
 					String id_chk = member_data[0];
 					
-					// 중복아이디
+					// 중복아이디 체크
 					if(id.getText().equals(id_chk)) {
 						System.out.println("중복아이디");
 						overlap = true;
