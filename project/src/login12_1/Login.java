@@ -18,8 +18,6 @@ import sign_up.SignUp;
 import test.CalendarApp;
 
 
-
-
 public class Login extends JFrame implements ActionListener {
 	
 	JFrame Login;
@@ -41,7 +39,7 @@ public class Login extends JFrame implements ActionListener {
 	  Font font = new Font("HY견고딕 보통",Font.BOLD,40);// 폰트 객체(글자체,효과,사이즈)
 	  user.setFont(font);// 폰트 적용
 	  user.setForeground(new Color(255,155,0)); //폰트 컬러 적용
-	  user.setBounds(160,20,100,100);
+	  user.setBounds(160,20,100,100); // 위치
 	  
 	  //프로그램 명 (Team Calendar)
 	  JLabel user2 =new JLabel("Team Calendar");
@@ -49,10 +47,9 @@ public class Login extends JFrame implements ActionListener {
 	  user2.setFont(font2);
 	  user2.setBounds(130,75,150,60);
 	  
-	  
 	  //아이디 객체
 	  id = new JTextField("아이디",20);
-	  id.setBounds(115,180,180,30); // 위치
+	  id.setBounds(115,180,180,30);
 	  
 	  //비밀번호 객체
 	  pw = new JTextField("비밀번호",20);
@@ -87,7 +84,6 @@ public class Login extends JFrame implements ActionListener {
 	  });
     
 	     
-	  //디자인 추가
 	  Login.add(user); // 프로젝트팀명 호출
 	  Login.add(user2);// 프로젝트팀명 호출
 	  Login.add(id); // 아이디 객체 호출
@@ -141,8 +137,8 @@ public class Login extends JFrame implements ActionListener {
 					if(id.getText().equals(id_chk) && pw.getText().equals(pw_chk)) {
 						success = true;				
 						// 메인 페이지로 이동
-						 new CalendarApp();
-						 Login.setVisible(false);
+						new CalendarApp();
+						Login.setVisible(false);
 						break;
 					}
 				}
@@ -163,11 +159,10 @@ public class Login extends JFrame implements ActionListener {
 				e2.printStackTrace();
 			} 
         }
-        
-       
     }
     
     
+    // getter
     public static String getId_chk() {
 		return id_chk;
 	}
@@ -175,13 +170,10 @@ public class Login extends JFrame implements ActionListener {
     public static String getPw_chk() {
 		return pw_chk;
 	}
-    
-    
+
     public static String getColor_chk() {
 		return color_chk;
 	}
-    
-  
 }
 
 	
