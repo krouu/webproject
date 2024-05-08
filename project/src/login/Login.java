@@ -134,7 +134,7 @@ public class Login extends JFrame implements ActionListener {
 					color_chk = member_data[3];
 										
 					// 로그인 성공
-					if(id.getText().equals(id_chk) && pw.getText().equals(pw_chk)) {
+					if(id.getText().equals(id_chk) && pw.getText().equals(pw_chk) && teamcode.getText().equals("NO.1")) {
 						success = true;				
 						// 메인 페이지로 이동
 						new CalendarApp();
