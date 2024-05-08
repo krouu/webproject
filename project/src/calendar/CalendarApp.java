@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,6 +29,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import login.Login;
+import vote.Vote;
 
 
 // 달력 앱을 나타내는 클래스
@@ -131,6 +134,20 @@ public class CalendarApp extends JFrame {
         // 메뉴바에 메뉴 추가
         mb.add(home);
         mb.add(to);
+        
+        home.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // 홈 메뉴 클릭 시 실행할 코드 작성
+            }
+        });
+
+        to.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) { // 투표버튼 클릭 시 이벤트
+                new Vote();
+            }
+        });
 
         //프레임에 컴포넌트들 추가
         add(selectday);
